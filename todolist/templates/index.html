@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>TodoApp - Django</title>
+  <title>TodoApp</title>
   {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
 	<div class="container">
             <div class="content">
             <h1>TodoApp</h1>
-            <p class="tagline">a Django todo app</p>
+            <p class="tagline">a Web-Application</p>
             <form action="" method="post">
             {% csrf_token %} <!-- csrf token for basic security -->
                 <input type="text" name="id" value="{{taskEditId}}" hidden></input>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="row">
                     <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i></button>
-                    <button class="taskEdit" name="taskEdit" formnovalidate="" type="submit" onclick="$('input#sublist').click();myfunction();"><i class="fa fa-pencil icon"></i></button>
+                    <button class="taskEdit" name="taskEdit" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-pencil icon"></i></button>
                     <button class="taskDone" name="taskDone" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-check icon"></i></button>
                     <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i></button>
                 </div>

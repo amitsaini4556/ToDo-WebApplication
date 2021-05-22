@@ -27,4 +27,4 @@ class TodoList(models.Model): #Todolist able name that inherits models.Model
 		ordering = ["due_date"] #ordering by the created field
 
 	def __str__(self):
-		return self.title #name to be shown when called
+		return self.title + str(self.created) + str(self.due_date) + str(self.category) + str(self.status) #name to be shown when called
