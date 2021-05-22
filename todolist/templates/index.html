@@ -14,14 +14,20 @@
 <div django-app="TaskManager">
 	<div class="container">
             <div class="content">
+              <div style="display: flex;flex-direction: row;justify-content: space-between;padding: 30px;padding-right: 5px;" class="row">
+                <div>
             <h1>TodoApp</h1>
-            <p class="tagline">a Django todo app</p>
+            <p class="tagline">a Django todo app</p></div>
+          <div>
+            <a href="{% url 'logout' %}"><i class="fa fa-power-off"></i></a>
+          </div></div>
+           
             <form action="" method="post">
             {% csrf_token %} <!-- csrf token for basic security -->
                 <input type="text" name="id" value="{{taskEditId}}" hidden></input>
                 <div class="inputContainer">
                     <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" value ="{{taskEditValue}}" required>
-                    <label for="description">Description</label>
+                    <label for="description">Title</label>
                 </div>
                 <div class="inputContainer half last">
                     <i class="fa fa-caret-down selectArrow"></i>
@@ -29,14 +35,14 @@
                       {% if categoryEditValue %}
                         <option class="" value="{{categoryEditValue}}" name="{{ category.name }}" selected>{{categoryEditValue}}</option>
                       {% else %}
-                        <option class="disabled" value="General" selected>Choose a category</option>
+                        <option class="disabled" value="General" selected>Set Priority</option>
                       {% endif %}
 
                     {% for category in categories %}
                         <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
                     {% endfor %}
                     </select>
-                    <label for="category">Category</label>
+                    <label for="category">Priority</label>
                 </div>
                 <div class="inputContainer half last right">
                     <input type="date" id="dueDate" class="taskDate" name="date" value="{{dateEditValue|date:'Y-m-d'}}" required >
