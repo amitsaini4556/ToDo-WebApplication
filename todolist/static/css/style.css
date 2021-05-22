@@ -278,25 +278,26 @@ button {
     background: transparent;
 }
 
-.category-Personal {
-    background: #2980b9;
+.category-LOW {
+    background:yellow;
+    color: black;
 }
 
-.category-Work {
-    background: #8e44ad;
+.category-MEDIUM {
+    background: rgb(255, 174, 0);
+    color: white;
 }
 
-.category-School {
-    background: #f39c12;
+.category-HIGH {
+    background: rgb(255, 102, 0);
+    color: white;
 }
 
-.category-Cleaning {
-    background: #16a085;
+.category-URGENT {
+    background:red;
+    color: white;
 }
 
-.category-Other {
-    background: #d35400;
-}
 
 footer {
     text-align: center;

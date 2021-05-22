@@ -2,7 +2,10 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.db.models.constraints import UniqueConstraint
+from django.db.models.fields.related import ForeignKey
 from django.utils import timezone
+
 
 # Create your models here.
 class Category(models.Model): # The Category table name that inherits models.Model
@@ -16,6 +19,7 @@ class Category(models.Model): # The Category table name that inherits models.Mod
 		return self.name #name to be shown when called
 
 class TodoList(models.Model): #Todolist able name that inherits models.Model
+	created_by = models.IntegerField(null=False)
 	title = models.CharField(max_length=250) # a varchar
 	content = models.TextField(blank=True) # a text field
 	created = models.DateField(default=timezone.now().strftime("%Y-%m-%d")) # a date
