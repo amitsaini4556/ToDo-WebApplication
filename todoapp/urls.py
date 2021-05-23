@@ -15,9 +15,34 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from todolist.views import index
+from django.urls import path
+from django.contrib.auth import views as auth_views
+from todolist.forms import EmailValidationOnForgotPassword
+from todolist.views import (
+    index,
+    signIn,
+    signOut,
+    signUp
+)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', index, name="TodoList"),
+    url(r'^login/', signIn, name = "login"),
+    url(r'^logout/', signOut, name = "logout"),
+    url(r'^register/',signUp, name = "register"),
+    path('reset_password/',
+        auth_views.PasswordResetView.as_view(form_class=EmailValidationOnForgotPassword,template_name="password_reset.html"),
+        name='reset_password'),
+    path('reset_password_sent/',
+        auth_views.PasswordResetDoneView.as_view(template_name="password_reset_sent.html"),
+        name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/',
+     auth_views.PasswordResetConfirmView.as_view(template_name="password_reset_form.html"),
+     name="password_reset_confirm"),
+
+    path('reset_password_complete/',
+        auth_views.PasswordResetCompleteView.as_view(template_name="password_reset_done.html"),
+        name="password_reset_complete")
 ]
