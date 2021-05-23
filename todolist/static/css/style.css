@@ -278,22 +278,22 @@ button {
     background: transparent;
 }
 
-.category-LOW {
+.category-Low {
     background:yellow;
     color: black;
 }
 
-.category-MEDIUM {
+.category-Medium {
     background: rgb(255, 174, 0);
     color: white;
 }
 
-.category-HIGH {
+.category-High {
     background: rgb(255, 102, 0);
     color: white;
 }
 
-.category-URGENT {
+.category-Urgent {
     background:red;
     color: white;
 }
