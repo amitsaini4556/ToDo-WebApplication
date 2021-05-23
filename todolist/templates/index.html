@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>TodoApp</title>
+  <title>Todo WebApp</title>
   {% load static %}
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,14 +14,20 @@
 <div django-app="TaskManager">
 	<div class="container">
             <div class="content">
+              <div style="display: flex;flex-direction: row;justify-content: space-between;padding: 30px;padding-right: 5px;" class="row">
+                <div>
             <h1>TodoApp</h1>
-            <p class="tagline">a Web-Application</p>
+            <p class="tagline">a Web-Application</p></div>
+          <div>
+            <a href="{% url 'logout' %}"><i class="fa fa-power-off"></i></a>
+          </div></div>
+
             <form action="" method="post">
             {% csrf_token %} <!-- csrf token for basic security -->
                 <input type="text" name="id" value="{{taskEditId}}" hidden></input>
                 <div class="inputContainer">
                     <input type="text" id="description" class="taskName" placeholder="What do you need to do?" name="description" value ="{{taskEditValue}}" required>
-                    <label for="description">Description</label>
+                    <label for="description">Title</label>
                 </div>
                 <div class="inputContainer half last">
                     <i class="fa fa-caret-down selectArrow"></i>
@@ -29,14 +35,14 @@
                       {% if categoryEditValue %}
                         <option class="" value="{{categoryEditValue}}" name="{{ category.name }}" selected>{{categoryEditValue}}</option>
                       {% else %}
-                        <option class="disabled" value="General" selected>Choose a category</option>
+                        <option class="disabled" value="General" selected>Set Priority</option>
                       {% endif %}
 
                     {% for category in categories %}
                         <option class="" value="{{ category.name }}" name="{{ category.name }}">{{ category.name }}</option>
                     {% endfor %}
                     </select>
-                    <label for="category">Category</label>
+                    <label for="category">Priority</label>
                 </div>
                 <div class="inputContainer half last right">
                     <input type="date" id="dueDate" class="taskDate" name="date" value="{{dateEditValue|date:'Y-m-d'}}" required >
@@ -44,7 +50,7 @@
                 </div>
                 <div class="row">
                     <button class="taskAdd" name="taskAdd" type="submit"><i class="fa fa-plus icon"></i></button>
-                    <button class="taskEdit" name="taskEdit" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-pencil icon"></i></button>
+                    <button class="taskEdit" name="taskEdit" formnovalidate="" type="submit" onclick="$('input#sublist').click();myfunction();"><i class="fa fa-pencil icon"></i></button>
                     <button class="taskDone" name="taskDone" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-check icon"></i></button>
                     <button class="taskDelete" name="taskDelete" formnovalidate="" type="submit" onclick="$('input#sublist').click();"><i class="fa fa-trash-o icon"></i></button>
                 </div>
