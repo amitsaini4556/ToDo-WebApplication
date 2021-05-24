@@ -1,19 +1,64 @@
-    <h2>Hi, {{ user }}</h2>
-    <p>The following task is due.</p>
-    <p>&nbsp;</p>
-    <table style="height: 64px; width: 558px; float: left;" border="0">
-    <tbody>
-    <tr>
-    <td style="width: 159px;"><span style="color: #999999;">TITLE</span></td>
-    <td style="width: 385px;">{{ title }}</td>
-    </tr>
-    <tr>
-    <td style="width: 159px;"><span style="color: #808080;">DUE DATE</span></td>
-    <td style="width: 385px;">{{ dueDate }}</td>
-    </tr>
-    <tr>
-    <td style="width: 159px;"><span style="color: #808080;">PRIORITY</span></td>
-    <td style="width: 385px;">{{ priority }}</td>
-    </tr>
-    </tbody>
-    </table>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <style>
+    body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 50px;
+}
+
+.card {
+    box-shadow: 0 5px 5px 5px #e1e1e1;
+    max-width: 350px;
+    padding: 15px;
+    border: 5px solid #e1e1e1;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    width: 25%;
+    border: 5px solid #e1e1e1;
+    border-radius: 50%;
+}
+
+table, table tr td {
+    width: 290px;
+    margin: 0 auto;
+    border: 0px solid #e1e1e1;
+    text-align: left;
+    padding:5px;
+}
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <img src="https://icon-library.com/images/todo-icon/todo-icon-17.jpg" alt="image" />
+        <p><strong>Hi, {{ user }}</strong></p>
+        <p>The following task is due.</p>
+
+        <table>
+            <tr>
+                <td><strong>Title</strong></td>
+                <td><a href="http://127.0.0.1:8000/" style="text-decoration:none;">{{ title }}</a></td>
+            </tr>
+            <tr>
+                <td><strong>Due Date</strong></td>
+                <td>{{ dueDate }}</td>
+            </tr>
+            <tr>
+                <td><strong>Priority</strong></td>
+                <td>{{ priority }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
