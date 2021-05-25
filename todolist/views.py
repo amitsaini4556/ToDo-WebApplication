@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render,redirect
-from .models import TodoList, Category
+from .models import TodoList, Priority
 import datetime
 from itertools import chain
 from django.shortcuts import render, redirect
@@ -56,24 +56,24 @@ def index(request):
 	todosNotDone = TodoList.objects.filter(status = 0, created_by = curr_user)
 	todosDone = TodoList.objects.filter(status = 1, created_by = curr_user)
 	todos = chain(todosNotDone,todosDone)
-	categories = Category.objects.all()
-	taskEditId,taskEditValue,categoryEditValue,dateEditValue = "","","",""
+	priorities = Priority.objects.all()
+	taskEditId,taskEditValue,priorityEditValue,dateEditValue = "","","",""
 	if request.method == "POST":
 		if "taskAdd" in request.POST:
 			title = request.POST["description"]
 			date = str(request.POST["date"])
-			category = request.POST["category_select"]
-			content = title + " -- " + date + " " + category
+			priority = request.POST["priority_select"]
+			content = title + " -- " + date + " " + priority
 			if request.POST["id"]!="":
 				todo = TodoList.objects.get(id=int(request.POST["id"]))
 				todo.created_by = curr_user
 				todo.title = title
 				todo.due_date = date
-				todo.category = Category.objects.get(name=category)
+				todo.priority = Priority.objects.get(name=priority)
 				todo.content = content
 				todo.save()
 			else:
-				Todo = TodoList(created_by=curr_user,title=title, content=content, due_date=date, category=Category.objects.get(name=category))
+				Todo = TodoList(created_by=curr_user,title=title, content=content, due_date=date, priority=Priority.objects.get(name=priority))
 				Todo.save()
 			return redirect("/")
 
@@ -83,7 +83,7 @@ def index(request):
 				todo = TodoList.objects.get(id=int(checkedlist), created_by = curr_user)
 				taskEditId = todo.id
 				taskEditValue = todo.title
-				categoryEditValue = todo.category
+				priorityEditValue = todo.priority
 				dateEditValue = todo.due_date
 			except:
 				pass
@@ -102,9 +102,9 @@ def index(request):
 				todo.delete()
 	context = { "taskEditId":taskEditId,
 				"taskEditValue":taskEditValue,
-				"categoryEditValue":categoryEditValue,
+				"priorityEditValue":priorityEditValue,
 				"dateEditValue":dateEditValue,
 				"todos": todos,
-				"categories":categories
+				"priorities":priorities
 			  }
 	return render(request, "index.html",context)

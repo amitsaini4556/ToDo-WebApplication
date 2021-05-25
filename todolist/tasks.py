@@ -18,7 +18,7 @@ def myTask():
                     'user': toUserName,
                     'title': todo.title,
                     'dueDate': todo.due_date,
-                    'priority':todo.category
+                    'priority':todo.priority
                     }
         html_message = render_to_string(html_template, context)
         subject = 'Due task ' + todo.title
