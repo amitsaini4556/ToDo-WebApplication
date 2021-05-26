@@ -53,9 +53,10 @@ def signOut(request):
 @login_required(login_url='login')
 def index(request):
 	curr_user = request.user.id
-	todosNotDone = TodoList.objects.filter(status = 0, created_by = curr_user)
+	todosNotDone = TodoList.objects.filter(status = 0, created_by = curr_user, due_date__gte = datetime.date.today())
+	todosDue = TodoList.objects.filter(status = 0, created_by = curr_user, due_date__lt = datetime.date.today())
 	todosDone = TodoList.objects.filter(status = 1, created_by = curr_user)
-	todos = chain(todosNotDone,todosDone)
+	todos = chain(todosNotDone,todosDue,todosDone)
 	priorities = Priority.objects.all()
 	taskEditId,taskEditValue,priorityEditValue,dateEditValue = "","","",""
 	if request.method == "POST":
@@ -105,6 +106,7 @@ def index(request):
 				"priorityEditValue":priorityEditValue,
 				"dateEditValue":dateEditValue,
 				"todos": todos,
-				"priorities":priorities
+				"priorities":priorities,
+				"today":datetime.date.today()
 			  }
 	return render(request, "index.html",context)
